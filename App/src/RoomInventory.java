@@ -69,4 +69,8 @@ public class RoomInventory {
     public void updateAvailability(String roomType, int count) {
         roomAvailability.put(roomType, count);
     }
+
+    public void releaseSingleRoom() { updateAvailability("Single Room", getRoomAvailability().get("Single Room") + 1); }
+    public void releaseDoubleRoom() { updateAvailability("Double Room", getRoomAvailability().get("Double Room") + 1); }
+    public void releaseSuiteRoom() { updateAvailability("Suite Room", getRoomAvailability().get("Suite Room") + 1); }
 }
