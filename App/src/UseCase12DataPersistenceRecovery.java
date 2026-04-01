@@ -1,0 +1,42 @@
+/**
+ * =========================================================================
+ * MAIN CLASS - UseCase12DataPersistenceRecovery
+ * =========================================================================
+ * 
+ * Use Case 12: Data Persistence & System Recovery
+ *
+ * Description:
+ * This class demonstrates how system state
+ * can be restored after an application restart.
+ *
+ * Inventory data is loaded from a file
+ * before any booking operations occur.
+ *
+ * @version 12.0
+ */
+public class UseCase12DataPersistenceRecovery {
+
+    /**
+     * Application entry point.
+     * 
+     * @param args Command-line arguments
+     */
+    public static void main(String[] args) {
+        System.out.println("System Recovery");
+
+        RoomInventory inventory = new RoomInventory();
+        FilePersistenceService persistenceService = new FilePersistenceService();
+        String filePath = "inventory_data.txt";
+
+        // Load inventory 
+        persistenceService.loadInventory(inventory, filePath);
+
+        System.out.println("\nCurrent Inventory:");
+        System.out.println("Single: " + inventory.getRoomAvailability().get("Single Room"));
+        System.out.println("Double: " + inventory.getRoomAvailability().get("Double Room"));
+        System.out.println("Suite: " + inventory.getRoomAvailability().get("Suite Room"));
+
+        // Save inventory
+        persistenceService.saveInventory(inventory, filePath);
+    }
+}
